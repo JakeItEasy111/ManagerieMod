@@ -6,7 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class AlliedVexLayers {
     public static final ModelLayerLocation ALLIED_VEX_LAYER = new ModelLayerLocation(
-            new ResourceLocation(Menagerie.MODID, "alliedVex"), "main");
+            new ResourceLocation(Menagerie.MODID, "allied_vex"), "main");
 
 }
 
