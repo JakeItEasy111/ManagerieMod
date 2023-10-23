@@ -17,7 +17,7 @@ public class AlliedVexRenderer extends MobRenderer <AlliedVexEntity, AlliedVexMo
 
     @Override
     public ResourceLocation getTextureLocation(AlliedVexEntity pEntity) {
-        return new ResourceLocation(Menagerie.MODID, "textures/alliedVex.png");
+        return new ResourceLocation(Menagerie.MODID, "textures/allied_vex.png");
     }
 
     @Override

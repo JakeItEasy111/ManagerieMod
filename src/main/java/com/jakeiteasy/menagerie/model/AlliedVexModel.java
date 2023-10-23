@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class AlliedVexModel < T extends AlliedVexEntity > extends EntityModel <T> {
 
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("menagerie", "alliedVex"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("menagerie", "allied_vex"), "main");
     private final ModelPart head;
     private final ModelPart body;
     private final ModelPart right_arm;
