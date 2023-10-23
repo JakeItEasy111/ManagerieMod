@@ -1,5 +1,6 @@
 package com.jakeiteasy.menagerie;
 
+import com.jakeiteasy.menagerie.registry.EntityRegistry;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
@@ -42,6 +43,8 @@ public class Menagerie
     public Menagerie()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        EntityRegistry.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
