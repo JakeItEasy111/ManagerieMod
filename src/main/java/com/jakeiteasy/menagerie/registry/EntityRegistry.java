@@ -11,6 +11,8 @@ public class EntityRegistry {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
             DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, Menagerie.MODID);
 
+
+
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
     }
