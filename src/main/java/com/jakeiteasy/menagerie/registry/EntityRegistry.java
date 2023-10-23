@@ -17,7 +17,7 @@ public class EntityRegistry {
 
     public static final RegistryObject<EntityType<AlliedVexEntity>> ALLIED_VEX =
             ENTITY_TYPES.register("rhino", () -> EntityType.Builder.of(AlliedVexEntity::new, MobCategory.CREATURE)
-                    .sized(2.5f, 2.5f).build("rhino"));
+                    .sized(2.5f, 2.5f).build("alliedVex"));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
