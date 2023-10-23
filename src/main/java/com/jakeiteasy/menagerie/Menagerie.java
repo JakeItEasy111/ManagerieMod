@@ -1,8 +1,10 @@
 package com.jakeiteasy.menagerie;
 
 import com.jakeiteasy.menagerie.registry.EntityRegistry;
+import com.jakeiteasy.menagerie.renderer.AlliedVexRenderer;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
