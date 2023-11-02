@@ -1,16 +1,17 @@
 package com.jakeiteasy.menagerie.model;
 
+import com.jakeiteasy.menagerie.animations.AlliedVexAnimations;
 import com.jakeiteasy.menagerie.entities.AlliedVexEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 
-public class AlliedVexModel < T extends AlliedVexEntity > extends EntityModel <T> {
+public class AlliedVexModel < T extends AlliedVexEntity > extends HierarchicalModel <T> {
 
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("menagerie", "allied_vex"), "main");
     private final ModelPart head;
@@ -57,8 +58,7 @@ public class AlliedVexModel < T extends AlliedVexEntity > extends EntityModel <T
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.root().getAllParts().forEach(ModelPart::resetPose);
 
-        this.animateWalk(ModAnimationDefinitions.RHINO_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
-        this.animate(((AlliedVexEntity) entity).idleAnimationState, .ALLIED_VEX_IDLE, ageInTicks, 1f);
+        this.animate(((AlliedVexEntity) entity).idleAnimationState, AlliedVexAnimations.ALLIED_VEX_IDLE, ageInTicks, 1f);
     }
 
     @Override
