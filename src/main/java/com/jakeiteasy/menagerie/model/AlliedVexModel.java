@@ -55,7 +55,10 @@ public class AlliedVexModel < T extends AlliedVexEntity > extends EntityModel <T
 
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.root().getAllParts().forEach(ModelPart::resetPose);
 
+        this.animateWalk(ModAnimationDefinitions.RHINO_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
+        this.animate(((AlliedVexEntity) entity).idleAnimationState, .ALLIED_VEX_IDLE, ageInTicks, 1f);
     }
 
     @Override
@@ -66,5 +69,9 @@ public class AlliedVexModel < T extends AlliedVexEntity > extends EntityModel <T
         left_arm.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
         left_wing.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
         right_wing.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+    }
+
+    public ModelPart root() {
+        return body;
     }
 }
