@@ -42,7 +42,7 @@ public class AlliedVexEntity extends Allay {
     @Override
     protected void updateWalkAnimation(float pPartialTick) {
         float f;
-        if(this.getPose() == Pose.FALL_FLYING) {
+        if(this.getPose() == Pose.STANDING) {
             f = Math.min(pPartialTick * 6F, 1f);
         } else {
             f = 0f;
