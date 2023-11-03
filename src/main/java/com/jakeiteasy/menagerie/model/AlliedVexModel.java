@@ -53,8 +53,7 @@ public class AlliedVexModel<T extends Entity> extends HierarchicalModel<T> {
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.root().getAllParts().forEach(ModelPart::resetPose);
-
-        this.animate(((AlliedVexEntity) entity).idleAnimationState, AlliedVexAnimations.ALLIED_VEX_IDLE, ageInTicks, 1f);
+        this.animate(((AlliedVexEntity) entity).flyAnimationState, AlliedVexAnimations.ALLIED_VEX_IDLE, ageInTicks, 2f);
     }
 
     @Override
