@@ -1,6 +1,7 @@
 package com.jakeiteasy.menagerie;
 
 import com.jakeiteasy.menagerie.registry.EntityRegistry;
+import com.jakeiteasy.menagerie.registry.ItemRegistry;
 import com.jakeiteasy.menagerie.renderer.AlliedVexRenderer;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
@@ -47,6 +48,7 @@ public class Menagerie
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         EntityRegistry.register(modEventBus);
+        ItemRegistry.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -75,8 +77,10 @@ public class Menagerie
     }
 
     // Add the example block item to the building blocks tab
-    private void addCreative(BuildCreativeModeTabContentsEvent event)
-    {
+    private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+            event.accept(ItemRegistry.ALLIED_VEX_SPAWN_EGG);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
