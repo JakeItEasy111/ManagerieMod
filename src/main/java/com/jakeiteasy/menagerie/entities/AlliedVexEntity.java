@@ -1,6 +1,5 @@
 package com.jakeiteasy.menagerie.entities;
 
-import net.minecraft.client.model.AllayModel;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -8,23 +7,35 @@ import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.allay.Allay;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraftforge.event.enchanting.EnchantmentLevelSetEvent;
 
 public class AlliedVexEntity extends Allay {
+
+    public final AnimationState flyAnimationState = new AnimationState();
+    public int flyAnimationTimeout = 0;
 
     public AlliedVexEntity(EntityType<? extends Allay> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
-
-    public final AnimationState flyAnimationState = new AnimationState();
-    private int idleAnimationTimeout = 0;
 
     @Override
     public void tick() {
         super.tick();
         if(this.level().isClientSide()) {
             setupAnimationStates();
+        }
+    }
+
+    private void setupAnimationStates() {
+        if(this.flyAnimationTimeout <= 0) {
+            this.flyAnimationTimeout = 35;
+            this.flyAnimationState.start(this.tickCount);
+        } else {
+            --this.flyAnimationTimeout;
         }
     }
 
@@ -44,17 +55,18 @@ public class AlliedVexEntity extends Allay {
                 this.setDeltaMovement(this.getDeltaMovement().scale((double)0.91F));
             }
         }
-
         this.calculateEntityAnimation(false);
     }
 
-    private void setupAnimationStates() {
-        if(this.idleAnimationTimeout <= 0) {
-            this.idleAnimationTimeout = 35;
-            this.flyAnimationState.start(this.tickCount);
+    @Override
+    protected void updateWalkAnimation(float pPartialTick) {
+        float f;
+        if(this.getPose() == Pose.STANDING) {
+            f = Math.min(pPartialTick * 4.0F, 1.0F);
         } else {
-            --this.idleAnimationTimeout;
+            f = 0f;
         }
+        this.walkAnimation.update(f, 0.4f);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -70,6 +82,4 @@ public class AlliedVexEntity extends Allay {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Monster.class, true));
     }
-
-
 }

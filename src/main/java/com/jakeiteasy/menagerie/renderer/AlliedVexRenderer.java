@@ -9,10 +9,10 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-public class AlliedVexRenderer extends MobRenderer <AlliedVexEntity, AlliedVexModel<AlliedVexEntity>> {
+public class AlliedVexRenderer extends MobRenderer <AlliedVexEntity, AlliedVexModel> {
 
     public AlliedVexRenderer(EntityRendererProvider.Context pContext) {
-        super(pContext, new AlliedVexModel<>(pContext.bakeLayer(AlliedVexLayers.ALLIED_VEX_LAYER)), 0.3f);
+        super(pContext, new AlliedVexModel(pContext.bakeLayer(AlliedVexLayers.ALLIED_VEX_LAYER)), 0.3f);
     }
 
     @Override
